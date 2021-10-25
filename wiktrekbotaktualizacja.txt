@@ -1,4 +1,4 @@
 git add .
 git status
 git commit -m "jakaś nazwa"
-git push wiktrekbottest
+git push wiktrekbot main
