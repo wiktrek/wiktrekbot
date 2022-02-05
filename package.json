@@ -1,20 +1,13 @@
 {
-  "name": "wiktrekbot",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "node src/index.js",
-    "test": "nodemon src/index.js"
-  },
   "dependencies": {
-    "discord.js": "^13.1.0",
-    "dotenv": "^10.0.0",
-    "glob": "^7.1.7",
-    "mongoose": "^6.0.5",
-    "reconlx": "^2.4.3"
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0"
   },
-"engines": {
-  "node": "16.x"
-}
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  },
+  "scripts": {
+    "run": "ts-node index.ts",
+    "tsc": "tsc -w --skipLibCheck"
+  }
 }
