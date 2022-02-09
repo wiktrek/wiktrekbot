@@ -1,4 +1,5 @@
-.env
 node_modules
+package-lock.json
 wiktrekbotaktualizacja.txt
 aktualizacja.bat
+mongodb.txt
