@@ -13,5 +13,6 @@ module.exports = {
      */
     run: async (client, interaction, args) => {
         interaction.followUp({ content: `${client.ws.ping}ms!` });
+        console.log("ping!")
     },
 };

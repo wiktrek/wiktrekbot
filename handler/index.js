@@ -1,3 +1,4 @@
+const AsciiTable = require('ascii-table')
 const { glob } = require("glob");
 const { promisify } = require("util");
 const { Client } = require("discord.js");
@@ -8,6 +9,7 @@ const globPromise = promisify(glob);
 /**
  * @param {Client} client
  */
+ const table = new AsciiTable('Commands').setHeading("Commands", "status")
 module.exports = async (client) => {
     // Commands
     const commandFiles = await globPromise(`${process.cwd()}/commands/**/*.js`);
@@ -32,20 +34,20 @@ module.exports = async (client) => {
     );
 
     const arrayOfSlashCommands = [];
+
     slashCommands.map((value) => {
         const file = require(value);
         if (!file?.name) return;
-        client.slashCommands.set(file.name, file);
-
+        // client.slashCommands.set(file.name, file);
+        table.addRow(file.name, "✅")
         if (["MESSAGE", "USER"].includes(file.type)) delete file.description;
         arrayOfSlashCommands.push(file);
     });
     client.on("ready", async () => {
         // Register for a single guild
-        await client.guilds.cache
-            .get("846267160938283048")
-            .commands.set(arrayOfSlashCommands);
-            
+        await client.guilds.cache.get("846267160938283048").commands.set(arrayOfSlashCommands)
+        console.log(table.toString())
+
 
         // Register for all the guilds the bot is in
         // await client.application.commands.set(arrayOfSlashCommands);

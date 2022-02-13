@@ -12,5 +12,5 @@ client.config = require("./config.json");
 
 // Initializing the project
 require("./handler/index")(client);
-
+client.destroy()
 client.login(client.config.token);

@@ -1,6 +1,7 @@
 const client = require("../index");
 
 client.on("interactionCreate", async (interaction) => {
+    
     // Slash Command Handling
     if (interaction.isCommand()) {
         await interaction.deferReply({ ephemeral: false }).catch(() => {});
