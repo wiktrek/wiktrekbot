@@ -2,7 +2,7 @@ const { Client, CommandInteraction, MessageEmbed } = require('discord.js')
 module.exports = {
     name: 'clear',
     description: 'deletes a specified number of messages from a channel or a target',
-    userPerm: ["MENAGE_MESSAGES"],
+    userPerm: ["MANAGE_CHANNELS"],
     options: [{
         name: "amount",
         description: "Selet the amount of messages to delete from this channel or target",
@@ -23,12 +23,13 @@ run:async (client,interaction,args) => {
     const Messages = await interaction.channel.messages.fetch()
 
 
-
+    if (amount > 100) return interaction.followUp('amount should be less or equal to 100')
     if(target) {
         let i = 0
         const filtered = [];
         (await Messages).filter((m) => {
             if(m.author.id === target.id && amount > i) {
+                
                 filtered.push(m)
                 i++;
             }
