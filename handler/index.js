@@ -1,4 +1,4 @@
-const AsciiTable = require('ascii-Table')
+const AsciiTable = require('ascii-table')
 const { glob } = require("glob");
 const { promisify } = require("util");
 const { Client } = require("discord.js");
@@ -45,8 +45,8 @@ module.exports = async (client) => {
     });
     client.on("ready", async () => {
         // Register for a single guild
-        // await client.application.commands.set(arrayOfSlashCommands);
-        await client.guilds.cache.get("846267160938283048").commands.set(arrayOfSlashCommands)
+        await client.application.commands.set(arrayOfSlashCommands);
+        // await client.guilds.cache.get("846267160938283048").commands.set(arrayOfSlashCommands)
         console.log(CommandTable.toString())
 
         // Register for all the guilds the bot is in
