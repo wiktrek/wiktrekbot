@@ -1,16 +1,16 @@
-const { Client, Collection } = require("discord.js");
-
+const { Client, Collection } = require('discord.js');
+const config = require('./config.json');
 const client = new Client({
-    intents: 32767,
+  intents: 32767,
 });
 module.exports = client;
 
 // Global Variables
 client.commands = new Collection();
 client.slashCommands = new Collection();
-client.config = require("./config.json");
+client.config = config;
 
 // Initializing the project
-require("./handler/index")(client);
-client.destroy()
+require('./handler/index')(client);
+client.destroy();
 client.login(client.config.token);

@@ -1,22 +1,23 @@
 {
-    "name": "djs",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "start": "node index.js",
-        "test": "nodemon index.js"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "@iamtraction/google-translate": "^1.1.2",
-        "ascii-table": "^0.0.9",
-        "discord.js": "^13.2.0",
-        "glob": "^7.1.7",
-        "mongoose": "^6.2.1",
-        "nodemon": "^2.0.15",
-        "reconlx": "^2.5.2"
-    }
+  "name": "wiktrekbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@iamtraction/google-translate": "^1.1.2",
+    "ascii-table": "^0.0.9",
+    "discord-html-transcripts": "^1.2.3",
+    "discord.js": "^13.2.0",
+    "glob": "^7.1.7",
+    "mongoose": "^6.2.1",
+    "nodemon": "^2.0.15",
+    "reconlx": "^2.5.2"
+  }
 }
