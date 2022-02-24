@@ -1,9 +1,8 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const Schema = new mongoose.Schema({
-    guildId: String,
-    roles: Array,
+  guildId: String,
+  roles: Array,
+});
 
-})
-
-module.exports  = mongoose.model('reaction-roles', Schema)
+module.exports = mongoose.model('reaction-roles', Schema);

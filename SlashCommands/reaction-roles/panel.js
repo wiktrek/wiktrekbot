@@ -40,6 +40,6 @@ module.exports = {
       ),
     ];
 
-    interaction.followUp({ embeds: [panelEmbed], components });
+    interaction.channel.send({ embeds: [panelEmbed], components });
   },
 };
