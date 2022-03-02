@@ -1,4 +1,5 @@
 const client = require('../../index');
+const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 module.exports = {
   name: 'InteractionCreateEvent',
 };
@@ -55,6 +56,22 @@ client.on('interactionCreate', async (interaction) => {
     } else {
       memberRoles.add(roleId);
       interaction.followUp(`${role.name} has been added to you`);
+    }
+  }
+  if (interaction.isButton()) {
+    if (interaction.customId.includes('newMeme')) {
+      //create an array of memes
+      const config = require('../../config.json');
+      const memes = config.memes;
+
+      //create random index from 0 to the length of memes array
+      var index = Math.floor(Math.random() * memes.length);
+
+      //create new image embed
+      let newMeme = new MessageEmbed().setImage(memes[index]);
+
+      //change the embed to show the next meme
+      interaction.update({ embeds: [newMeme] });
     }
   }
 });
