@@ -8,15 +8,7 @@ const client = new Client({
 client.commands = new Collection();
 client.slashCommands = new Collection();
 client.config = config;
-
-const { DisTube } = require('distube');
-const { SpotifyPlugin } = require('@distube/spotify');
-
-client.distube = new DisTube(client, {
-  leaveOnFinish: true,
-  emitAddListWhenCreatingQueue: false,
-  plugins: [new SpotifyPlugin()],
-});
+require('./Systems/GiveawaySys')(client);
 module.exports = client;
 // Initializing the project
 require('./handler/index')(client);
