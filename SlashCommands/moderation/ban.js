@@ -33,7 +33,7 @@ module.exports = {
     await target.send(
       `You have been banned from ${interaction.guild.name}, reason: ${reason}`
     );
-    target.ban(reason);
+    target.ban({ reason: reason });
     interaction.followUp({
       content: `Banned ${target.user.tag} successfully! reason: ${reason}`,
     });
