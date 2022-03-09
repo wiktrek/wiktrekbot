@@ -120,7 +120,7 @@ module.exports = {
               const removedWords = [];
 
               Words.forEach((w) => {
-                if (!data.words.includes(w)) return;
+                if (!data.Words.includes(w)) return;
                 data.Words.remove(w);
                 removedWords.push(w);
               });
