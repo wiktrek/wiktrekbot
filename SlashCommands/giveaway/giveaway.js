@@ -124,10 +124,7 @@ module.exports = {
           (g) => g.guildId === interaction.guildId && g.prize === messageId
         );
         if (!giveaway) {
-          errorEmbed.setDescription(
-            `Unable to fing the giveaway with the message id: ${messageId} in this guild`
-          );
-          interaction.channel.send({ embeds: [errorEmbed] });
+          
         }
 
         switch (choice) {

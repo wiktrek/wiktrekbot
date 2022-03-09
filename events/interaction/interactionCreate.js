@@ -28,7 +28,7 @@ client.on('interactionCreate', async (interaction) => {
       interaction.user.id
     );
 
-    if (!interaction.member.permissions.has(cmd.userPerm))
+    if (!interaction.member.permissions.has(cmd.userPerm || []))
       return interaction.followUp({
         content: "You don't have perms to do that!",
       });

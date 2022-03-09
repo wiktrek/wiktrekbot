@@ -6,6 +6,8 @@ const client = new Client({
 
 // Global Variables
 client.commands = new Collection();
+client.filters = new Collection();
+client.filtersLog = new Collection();
 client.slashCommands = new Collection();
 client.config = config;
 require('./Systems/GiveawaySys')(client);

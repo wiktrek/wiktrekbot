@@ -84,10 +84,10 @@ client.on('interactionCreate', async (interaction) => {
             ],
             files: [attachment],
           });
-        interaction.reply({
+        interaction.channel.send({
           embeds: [
             embed.setDescription(
-              `The tramsript is now saved [TRANSCRIPT](${Message.url})`
+              `The transcript is now saved [TRANSCRIPT](${Message.url})`
             ),
           ],
         });
