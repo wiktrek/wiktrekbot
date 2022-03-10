@@ -11,9 +11,6 @@ module.exports = {
         name: target.user.tag,
         iconURL: target.user.avatarURL({ dynamic: true, size: 512 }),
       })
-      .setThumbnail({
-        iconURL: target.user.avatarURL({ dynamic: true, size: 512 }),
-      })
       .addFields(
         { name: 'ID', value: `${target.user.id}` },
         {
