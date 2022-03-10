@@ -5,7 +5,7 @@ const Schema = require('../../models/FilterDB');
 module.exports = {
   name: 'filter',
   description: 'A simple chat filter system',
-  UserPerm: ['MENAGE_MESSAGES'],
+  userPerm: ['MENAGE_MESSAGES'],
   options: [
     {
       name: 'settings',
@@ -82,7 +82,7 @@ module.exports = {
         Schema.findOne({ Guild: guild.id }, async (err, data) => {
           if (err) throw err;
           if (!data)
-            return  interaction.channel.send({
+            return interaction.channel.send({
               content: 'there are no words in the balcklist',
             });
 
