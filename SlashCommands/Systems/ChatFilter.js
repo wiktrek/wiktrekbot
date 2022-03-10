@@ -5,7 +5,7 @@ const Schema = require('../../models/FilterDB');
 module.exports = {
   name: 'filter',
   description: 'A simple chat filter system',
-  userPerm: ['MENAGE_MESSAGES'],
+  userPerm: ['ADMINISTRATOR'],
   options: [
     {
       name: 'settings',
