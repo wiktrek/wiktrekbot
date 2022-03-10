@@ -22,6 +22,11 @@ module.exports = {
       ],
     },
     {
+      name: 'list',
+      description: 'list',
+      type: 'SUB_COMMAND',
+    },
+    {
       name: 'configure',
       description: 'add or remove words from the balcklist',
       type: 'SUB_COMMAND',
@@ -73,6 +78,19 @@ module.exports = {
           ephemeral: true,
         });
         break;
+      case 'list':
+        Schema.findOne({ Guild: guild.id }, async (err, data) => {
+          if (err) throw err;
+          if (!data)
+            return  interaction.channel.send({
+              content: 'there are no words in the balcklist',
+            });
+
+          interaction.channel.send({
+            content: `Words black listed: ${data.Words}`,
+          });
+        });
+        break;
       case 'configure':
         const Choices = options.getString('options');
         const Words = options.getString('word').toLowerCase().split(',');
@@ -108,6 +126,7 @@ module.exports = {
               data.save();
             });
             break;
+
           case 'remove':
             Schema.findOne({ Guild: guild.id }, async (err, data) => {
               if (err) throw err;
