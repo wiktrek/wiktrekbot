@@ -1,7 +1,7 @@
 const { Message, Client, MessageEmbed } = require('discord.js');
 const client = require('../../index');
 module.exports = {
-  name: 'messageCreate',
+  name: 'FilterDetection',
 };
 client.on('messageCreate', async (message) => {
   if (message.author.bot) return;
