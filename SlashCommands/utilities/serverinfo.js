@@ -21,7 +21,6 @@ module.exports = {
         name: guild.name,
         iconURL: guild.iconURL({ dynamic: true }),
       })
-      .setThumbnail(guild.iconURL({ dynamic: true }))
       .addFields(
         {
           name: 'GENERAL',

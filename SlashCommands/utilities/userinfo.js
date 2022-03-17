@@ -15,12 +15,10 @@ module.exports = {
         { name: 'ID', value: `${target.user.id}` },
         {
           name: 'Roles',
-          value: `${
-            target.roles.cache
-              .map((r) => r)
-              .join(' ')
-              .replace('@everyone', ' ') || 'None'
-          }`,
+          value: `${target.roles.cache
+            .map((r) => r)
+            .join(' ')
+            .replace('@everyone', '.')}`,
         },
         {
           name: 'Member Since',
