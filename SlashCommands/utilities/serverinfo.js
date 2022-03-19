@@ -27,7 +27,7 @@ module.exports = {
           value: `
           Name: ${guild.name}
           Created: <t:${parseInt(createdTimestamp / 1000)}:R>
-          Owner: <@${ownerId}
+          Owner: <@${ownerId}>
 
           `,
         },
