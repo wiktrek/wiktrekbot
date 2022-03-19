@@ -1,6 +1,5 @@
 const { Client, CommandInteraction } = require('discord.js');
 const { Canvas } = require('canvacord');
-const ms = require('ms');
 module.exports = {
   name: 'image',
   description: 'image',
@@ -12,6 +11,12 @@ module.exports = {
       options: [
         {
           name: 'user',
+          description: 'user',
+          type: 'USER',
+          required: false,
+        },
+        {
+          name: 'user2',
           description: 'user',
           type: 'USER',
           required: false,
@@ -90,12 +95,12 @@ module.exports = {
 
   run: async (client, interaction) => {
     const user = interaction.options.getUser('user') || interaction.member;
-    const user2 = interaction.member;
+    const user2 = interaction.options.getUser('user2') || interaction.member;
     const avatar = user.displayAvatarURL({ dynamic: false, format: 'png' });
     const avatar2 = user2.displayAvatarURL({ dynamic: false, format: 'png' });
     switch (interaction.options.getSubcommand()) {
       case 'slap': {
-        const image = await Canvas.slap(avatar2, avatar);
+        const image = await Canvas.slap(avatar, avatar2);
         return interaction.channel.send({ files: [{ attachment: image }] });
       }
       case 'trash': {
