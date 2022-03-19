@@ -3,7 +3,7 @@ const ms = require('ms');
 module.exports = {
   name: 'giveaway',
   description: 'A complete giveaway system',
-  UserPerm: ['ADMINISTRATOR'],
+  userPerm: ['ADMINISTRATOR'],
   options: [
     {
       name: 'start',
@@ -124,7 +124,6 @@ module.exports = {
           (g) => g.guildId === interaction.guildId && g.prize === messageId
         );
         if (!giveaway) {
-          
         }
 
         switch (choice) {

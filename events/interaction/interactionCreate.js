@@ -43,6 +43,29 @@ client.on('interactionCreate', async (interaction) => {
   }
 
   if (interaction.isSelectMenu()) {
+    if (interaction.customId === 'tutorial') {
+      const tutorial = interaction.values[0];
+      console.log(tutorial);
+      if (tutorial === 'panel') {
+        interaction.channel.send({
+          content:
+            '1.Add a role using /add-role \n 2.Use /panel \n 3. Pick role that you just added ',
+        });
+      }
+      if (tutorial === 'filter') {
+        interaction.channel.send({
+          content:
+            '1.Add a word to black list using /filter configure \n 2 if you want you can add a channel that will log every time someone uses blacklisted word',
+        });
+      }
+      if (tutorial === 'ticket') {
+        interaction.channel.send({
+          content:
+            '1. use ticket setup \n 2. The bot will send a message to the channel you provided \n 3.Use the buttons to choose what ticket you want to create \n4. Use the buttons to save the ticket \n 5.The bot will send a transcript to the transcript channel. \n 6 You can download the html file with the messages form the ticket',
+        });
+      }
+    }
+
     if (interaction.customId !== 'reaction-roles') return;
     await interaction.deferReply({ ephemeral: true });
     const roleId = interaction.values[0];
