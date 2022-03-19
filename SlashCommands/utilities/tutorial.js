@@ -10,6 +10,7 @@ module.exports = {
   description: 'tutorials',
   run: async (client, interaction) => {
     const {} = interaction;
+    // new MessageActionRow
     const row = new MessageActionRow().addComponents(
       new MessageSelectMenu()
         .setCustomId('tutorial')

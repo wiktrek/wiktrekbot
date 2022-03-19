@@ -45,7 +45,6 @@ client.on('interactionCreate', async (interaction) => {
   if (interaction.isSelectMenu()) {
     if (interaction.customId === 'tutorial') {
       const tutorial = interaction.values[0];
-      console.log(tutorial);
       if (tutorial === 'panel') {
         interaction.channel.send({
           content:

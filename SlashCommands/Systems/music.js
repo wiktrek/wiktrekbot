@@ -127,7 +127,6 @@ module.exports = {
                     }\``
                 )
                 .join('\n');
-              console.log(queue.songs.map);
               const queueEmbed = new MessageEmbed()
                 .setColor('DARK_BLUE')
                 .setDescription(`${q}`);
