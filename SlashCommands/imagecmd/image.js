@@ -95,7 +95,7 @@ module.exports = {
     const avatar2 = user2.displayAvatarURL({ dynamic: false, format: 'png' });
     switch (interaction.options.getSubcommand()) {
       case 'slap': {
-        const image = await Canvas.slap(avatar, avatar2);
+        const image = await Canvas.slap(avatar2, avatar);
         return interaction.channel.send({ files: [{ attachment: image }] });
       }
       case 'trash': {
