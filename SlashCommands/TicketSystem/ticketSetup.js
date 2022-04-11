@@ -142,7 +142,7 @@ module.exports = {
         .get(channel.id)
         .send({ embeds: [embed], components: [Buttons] });
 
-      interaction.channel.send({ content: 'Done', ephemeral: true });
+      interaction.followUp({ content: 'Done', ephemeral: true });
     } catch (err) {
       const errEmbed = new MessageEmbed().setColor('#ffff').setDescription(
         `🛑 | An error occuured while setting up your ticket system\n**what to make sure of?**
@@ -152,7 +152,7 @@ module.exports = {
           4.Make sure your button emojis, are actually emojis, not ids.`
       );
       console.log(err);
-      interaction.channel.send({ embeds: [errEmbed] });
+      interaction.followUp({ embeds: [errEmbed] });
     }
   },
 };

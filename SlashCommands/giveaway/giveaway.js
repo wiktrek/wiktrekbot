@@ -109,11 +109,11 @@ module.exports = {
             })
             .then(async () => {
               successEmbed.setDescription('Giveaway was successfully started.');
-              interaction.channel.send({ embeds: [successEmbed] });
+              interaction.followUp({ embeds: [successEmbed] });
             })
             .catch((err) => {
               errorEmbed.setDescription(`an error has occurred\n\`${err}\``);
-              interaction.channel.send({ embeds: [errorEmbed] });
+              interaction.followUp({ embeds: [errorEmbed] });
             });
         }
         break;
@@ -133,13 +133,13 @@ module.exports = {
                 .end(messageId)
                 .then(() => {
                   successEmbed.setDescription('Giveaway has been ended');
-                  interaction.channel.send({ embeds: [successEmbed] });
+                  interaction.followUp({ embeds: [successEmbed] });
                 })
                 .catch((err) => {
                   errorEmbed.setDescription(
                     `An error has occurred\m\`${err}\``
                   );
-                  interaction.channel.send({ embeds: [errorEmbed] });
+                  interaction.followUp({ embeds: [errorEmbed] });
                 });
             }
             break;
@@ -149,13 +149,13 @@ module.exports = {
                 .pause(messageId)
                 .then(() => {
                   successEmbed.setDescription('Giveaway has been paused');
-                  interaction.channel.send({ embeds: [successEmbed] });
+                  interaction.followUp({ embeds: [successEmbed] });
                 })
                 .catch((err) => {
                   errorEmbed.setDescription(
                     `An error has occurred\m\`${err}\``
                   );
-                  interaction.channel.send({ embeds: [errorEmbed] });
+                  interaction.followUp({ embeds: [errorEmbed] });
                 });
             }
             break;
@@ -165,13 +165,13 @@ module.exports = {
                 .unpause(messageId)
                 .then(() => {
                   successEmbed.setDescription('Giveaway has been unpaused');
-                  interaction.channel.send({ embeds: [successEmbed] });
+                  interaction.followUp({ embeds: [successEmbed] });
                 })
                 .catch((err) => {
                   errorEmbed.setDescription(
                     `An error has occurred\m\`${err}\``
                   );
-                  interaction.channel.send({ embeds: [errorEmbed] });
+                  interaction.followUp({ embeds: [errorEmbed] });
                 });
             }
             break;
@@ -181,13 +181,13 @@ module.exports = {
                 .reroll(messageId)
                 .then(() => {
                   successEmbed.setDescription('Giveaway has been rerolled');
-                  interaction.channel.send({ embeds: [successEmbed] });
+                  interaction.followUp({ embeds: [successEmbed] });
                 })
                 .catch((err) => {
                   errorEmbed.setDescription(
                     `An error has occurred\m\`${err}\``
                   );
-                  interaction.channel.send({ embeds: [errorEmbed] });
+                  interaction.followUp({ embeds: [errorEmbed] });
                 });
             }
             break;
@@ -197,13 +197,13 @@ module.exports = {
                 .delete(messageId)
                 .then(() => {
                   successEmbed.setDescription('Giveaway has been deleted');
-                  interaction.channel.send({ embeds: [successEmbed] });
+                  interaction.followUp({ embeds: [successEmbed] });
                 })
                 .catch((err) => {
                   errorEmbed.setDescription(
                     `An error has occurred\m\`${err}\``
                   );
-                  interaction.channel.send({ embeds: [errorEmbed] });
+                  interaction.followUp({ embeds: [errorEmbed] });
                 });
             }
 

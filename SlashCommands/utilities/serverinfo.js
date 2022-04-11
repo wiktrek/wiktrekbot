@@ -85,6 +85,6 @@ module.exports = {
       .setFooter({ text: 'Last Checked:' })
       .setTimestamp();
 
-    interaction.channel.send({ embeds: [Embed] });
+    interaction.followUp({ embeds: [Embed] });
   },
 };

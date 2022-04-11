@@ -59,34 +59,33 @@ module.exports = {
     const { options, member, guild, channel } = interaction;
     const VoiceChannel = member.voice.channel;
     if (!VoiceChannel)
-      return interaction.channel.send({
+      return interaction.followUp({
         content:
           'You must be in a voice channel to be able to use the music command',
         ephemeral: true,
       });
     if (guild.me.voice.channelI && VoiceChannel.id !== guild.me.voice.channelId)
-      return interaction.channel.send({
+      return interaction.followUp({
         content: `I'm already playing music in <#${guild.me.voice.channelId}>`,
         ephemeral: true,
       });
     try {
       switch (options.getSubcommand()) {
         case 'play': {
-          console.log('tak');
           client.distube.play(VoiceChannel, options.getString('query'), {
             textChannel: channel,
             member: member,
           });
-          return interaction.channel.send({ content: '🎼 Request recived' });
+          return interaction.followUp({ content: '🎼 Request recived' });
         }
         case 'volume': {
           const Volume = options.getNumber('percent');
           if (Volume > 100 || Volume < 1)
-            return interaction.channel.send({
+            return interaction.followUp({
               content: 'You have to specify a number between 1 and 100',
             });
           client.distube.setVolume(VoiceChannel, Volume);
-          return interaction.channel.send({
+          return interaction.followUp({
             content: `🔈 Volume has beem set to \`${Volume}\``,
           });
         }
@@ -94,28 +93,28 @@ module.exports = {
           const queue = await client.distube.getQueue(VoiceChannel);
 
           if (!queue)
-            return interaction.channel.send({
+            return interaction.followUp({
               content: '⛔ there is no queue',
             });
           switch (options.getString('options')) {
             case 'skip':
               await queue.skip(VoiceChannel);
-              return interaction.channel.send({
+              return interaction.followUp({
                 content: '⏩ Song has been skipped',
               });
             case 'stop':
               await queue.stop(VoiceChannel);
-              return interaction.channel.send({
+              return interaction.followUp({
                 content: '⏹ music has been stopped',
               });
             case 'pause':
               await queue.pause(VoiceChannel);
-              return interaction.channel.send({
+              return interaction.followUp({
                 content: '⏸ song has been paused',
               });
             case 'resume':
               await queue.resume(VoiceChannel);
-              return interaction.channel.send({
+              return interaction.followUp({
                 content: '▶ song has been resumed',
               });
             case 'queue':
@@ -130,7 +129,7 @@ module.exports = {
               const queueEmbed = new MessageEmbed()
                 .setColor('DARK_BLUE')
                 .setDescription(`${q}`);
-              return interaction.channel.send({
+              return interaction.followUp({
                 embeds: [queueEmbed],
               });
           }
@@ -140,7 +139,7 @@ module.exports = {
       const errorEmbed = new MessageEmbed()
         .setColor('RED')
         .setDescription(`⛔ Alert ${err}`);
-      return interaction.channel.send({ embeds: [errorEmbed] });
+      return interaction.followUp({ embeds: [errorEmbed] });
     }
   },
 };

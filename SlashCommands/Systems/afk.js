@@ -47,7 +47,7 @@ module.exports = {
         Embed.setColor('GREEN').setDescription(
           `Your AFK status has been updated to ${afkStatus}`
         );
-        return interaction.channel.send({
+        return interaction.followUp({
           embeds: [Embed],
           ephemeral: true,
         });
@@ -58,7 +58,7 @@ module.exports = {
         Embed.setColor('RED').setDescription(
           `Your AFK status has been removed`
         );
-        return interaction.channel.send({
+        return interaction.followUp({
           embeds: [Embed],
           ephemeral: true,
         });

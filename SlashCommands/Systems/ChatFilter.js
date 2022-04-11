@@ -73,7 +73,7 @@ module.exports = {
           { new: true, upsert: true }
         );
         client.filtersLog.set(guild.id, loggingChannel);
-        interaction.channel.send({
+        interaction.followUp({
           content: `added <#${loggingChannel}>`,
           ephemeral: true,
         });
@@ -82,11 +82,11 @@ module.exports = {
         Schema.findOne({ Guild: guild.id }, async (err, data) => {
           if (err) throw err;
           if (!data)
-            return interaction.channel.send({
+            return interaction.followUp({
               content: 'there are no words in the balcklist',
             });
 
-          interaction.channel.send({
+          interaction.followUp({
             content: `Words black listed: ${data.Words}`,
           });
         });
@@ -107,7 +107,7 @@ module.exports = {
 
                 client.filters.set(guild.id, Words);
 
-                return interaction.channel.send({
+                return interaction.followUp({
                   content: `Added ${Words.length} new words(s) to the blacklist`,
                 });
               }
@@ -119,7 +119,7 @@ module.exports = {
                 client.filters.get(guild.id).push(w);
               });
 
-              interaction.channel.send({
+              interaction.followUp({
                 content: `Added ${newWords.length} new word(s) to the blacklist`,
               });
 
@@ -131,7 +131,7 @@ module.exports = {
             Schema.findOne({ Guild: guild.id }, async (err, data) => {
               if (err) throw err;
               if (!data) {
-                return interaction.channel.send({
+                return interaction.followUp({
                   content: `There is no data to remove!`,
                 });
               }
@@ -150,7 +150,7 @@ module.exports = {
 
               client.filters.set(guild.id, [newArray]);
 
-              interaction.channel.send({
+              interaction.followUp({
                 content: `Removed ${removedWords.length} word(s) from the blacklist`,
               });
             });

@@ -101,31 +101,31 @@ module.exports = {
     switch (interaction.options.getSubcommand()) {
       case 'slap': {
         const image = await Canvas.slap(avatar, avatar2);
-        return interaction.channel.send({ files: [{ attachment: image }] });
+        return interaction.followUp({ files: [{ attachment: image }] });
       }
       case 'trash': {
         const image = await Canvas.trash(avatar);
-        return interaction.channel.send({
+        return interaction.followUp({
           files: [{ attachment: image }],
         });
       }
       case 'wanted': {
         const image = await Canvas.wanted(avatar);
-        return interaction.channel.send({
+        return interaction.followUp({
           files: [{ attachment: image }],
         });
       }
       case 'facepalm': {
         const image = await Canvas.facepalm(avatar);
-        return interaction.channel.send({ files: [{ attachment: image }] });
+        return interaction.followUp({ files: [{ attachment: image }] });
       }
       case 'beautiful': {
         const image = await Canvas.beautiful(avatar);
-        return interaction.channel.send({ files: [{ attachment: image }] });
+        return interaction.followUp({ files: [{ attachment: image }] });
       }
       case 'blur': {
         const image = await Canvas.blur(avatar);
-        return interaction.channel.send({ files: [{ attachment: image }] });
+        return interaction.followUp({ files: [{ attachment: image }] });
       }
     }
   },

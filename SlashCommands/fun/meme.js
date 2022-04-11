@@ -29,6 +29,6 @@ module.exports = {
         .setStyle('PRIMARY')
     );
 
-    interaction.channel.send({ embeds: [memeEmbed], components: [row] });
+    interaction.followUp({ embeds: [memeEmbed], components: [row] });
   },
 };
