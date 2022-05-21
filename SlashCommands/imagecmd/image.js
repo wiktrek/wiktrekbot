@@ -5,87 +5,29 @@ module.exports = {
   description: 'image',
   options: [
     {
-      name: 'slap',
-      description: 'slap someone',
-      type: 'SUB_COMMAND',
-      options: [
-        {
-          name: 'user',
-          description: 'user',
-          type: 'USER',
-          required: false,
-        },
-        {
-          name: 'user2',
-          description: 'user',
-          type: 'USER',
-          required: false,
-        },
-      ],
+      name: 'user',
+      description: 'Select an user',
+      type: 'USER',
+      required: true,
     },
     {
-      name: 'trash',
-      description: 'trash',
-      type: 'SUB_COMMAND',
-      options: [
-        {
-          name: 'user',
-          description: 'user',
-          type: 'USER',
-          required: false,
-        },
-      ],
+      name: 'user2',
+      description: 'Select an user',
+      type: 'USER',
+      required: true,
     },
     {
-      name: 'wanted',
-      description: 'wanted',
-      type: 'SUB_COMMAND',
-      options: [
-        {
-          name: 'user',
-          description: 'user',
-          type: 'USER',
-          required: false,
-        },
-      ],
-    },
-    {
-      name: 'facepalm',
-      description: 'facepalm',
-      type: 'SUB_COMMAND',
-      options: [
-        {
-          name: 'user',
-          description: 'user',
-          type: 'USER',
-          required: false,
-        },
-      ],
-    },
-    {
-      name: 'beautiful',
-      description: 'beautiful',
-      type: 'SUB_COMMAND',
-      options: [
-        {
-          name: 'user',
-          description: 'user',
-          type: 'USER',
-          required: false,
-        },
-      ],
-    },
-    {
-      name: 'blur',
-      description: 'blur',
-      type: 'SUB_COMMAND',
-      options: [
-        {
-          name: 'user',
-          description: 'user',
-          type: 'USER',
-          required: false,
-        },
+      name: 'options',
+      description: 'Select an option',
+      type: 'STRING',
+      required: true,
+      choices: [
+        { name: 'slap', value: 'slap' },
+        { name: 'trash', value: 'trash' },
+        { name: 'wanted', value: 'wanted' },
+        { name: 'facepalm', value: 'facepalm' },
+        { name: 'beautiful', value: 'beautiful' },
+        { name: 'blur', value: 'blur' },
       ],
     },
   ],
@@ -98,7 +40,7 @@ module.exports = {
     const user2 = interaction.options.getUser('user2') || interaction.member;
     const avatar = user.displayAvatarURL({ dynamic: false, format: 'png' });
     const avatar2 = user2.displayAvatarURL({ dynamic: false, format: 'png' });
-    switch (interaction.options.getSubcommand()) {
+    switch (interaction.options.getString('options')) {
       case 'slap': {
         const image = await Canvas.slap(avatar, avatar2);
         return interaction.followUp({ files: [{ attachment: image }] });
