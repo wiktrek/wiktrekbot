@@ -6,7 +6,8 @@
     "dotenv": "^16.0.2",
     "glob": "^8.0.3",
     "mongoose": "^6.6.1",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "simply-djs": "^3.0.2"
   },
   "scripts": {
     "start": "nodemon src/index.js"

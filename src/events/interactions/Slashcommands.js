@@ -30,15 +30,5 @@ module.exports = {
         subCommandFile.execute(interaction, client);
       } else command.execute(interaction, client);
     }
-    if (interaction.isButton()) {
-      if (interaction.customId === 'clickid') {
-        await interaction.channel
-          .send({
-            content: `click 1`,
-            components: [],
-          })
-          .then((msg) => msg.edit({ content: `click 2`, components: [] }));
-      }
-    }
   },
 };
