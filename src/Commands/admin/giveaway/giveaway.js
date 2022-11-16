@@ -3,8 +3,6 @@ const {
   Client,
   SlashCommandBuilder,
 } = require('discord.js');
-const DB = require('../../../Schemas/GiveawayDB');
-const { endGiveaway } = require('../../../functions/GiveawayFunctions');
 const { PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
@@ -44,14 +42,4 @@ module.exports = {
    * @param {ChatInputCommandInteraction} interaction
    * @param {Client} client
    */
-  async execute(interaction, client) {
-    const subcommand = interaction.options.getSubcommand();
-
-    switch (subcommand) {
-      case 'manage':
-        {
-        }
-        break;
-    }
-  },
 };

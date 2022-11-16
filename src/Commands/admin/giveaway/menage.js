@@ -16,6 +16,8 @@ module.exports = {
    */
   subCommand: 'giveaway.menage',
   async execute(interaction, client) {
+    const { endGiveaway } = require('../../../functions/GiveawayFunctions');
+    const DB = require('../../../Schemas/GiveawayDB');
     const embed = new EmbedBuilder();
     const messageId = interaction.options.getString('message_id');
     const toggle = interaction.options.getString('toggle');
