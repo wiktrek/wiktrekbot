@@ -4,5 +4,6 @@ module.exports = {
   once: true,
   execute(client) {
     loadCommands(client);
+    
   },
 };
