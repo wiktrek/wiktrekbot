@@ -4,7 +4,9 @@ const {
   SlashCommandBuilder,
 } = require('discord.js');
 const { PermissionFlagsBits } = require('discord.js');
-
+  /**
+   * @param {ChatInputCommandInteraction} interaction
+   */
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('giveaway')
