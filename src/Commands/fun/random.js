@@ -19,13 +19,16 @@ module.exports = {
 
   async execute(interaction) {
     const { options, guild, member } = interaction;
-    const min = options.getMember('min');
-    const max = options.getMember('max');
-    console.log(target2);
+    const min = options.getNumber('min');
+    const max = options.getNumber('max');
     const random = Math.floor(Math.random() * (max - min + 1) + min);
+    if (min > max)
+      return interaction.reply({
+        content: `min > max. min value needs to be greater than max`,
+      });
     const embed = new EmbedBuilder()
-      .setTitle(`>${target.displayName} \n>${target2.displayName}`)
-      .setDescription(`${random}% ${bar}`)
+      .setTitle(`max:${max} min:${min}`)
+      .setDescription(`random number: ${random}`)
       .setColor('#D556C4');
     interaction.reply({
       embeds: [embed],
