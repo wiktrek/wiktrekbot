@@ -22,7 +22,7 @@ module.exports = {
     const min = options.getMember('min');
     const max = options.getMember('max');
     console.log(target2);
-    const random = Math.round(Math.random() * 100);
+    const random = Math.floor(Math.random() * (max - min + 1) + min);
     const embed = new EmbedBuilder()
       .setTitle(`>${target.displayName} \n>${target2.displayName}`)
       .setDescription(`${random}% ${bar}`)
