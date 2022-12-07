@@ -17,7 +17,7 @@ module.exports = {
         .setURL(
           'https://discord.com/api/oauth2/authorize?client_id=942891118201307156&permissions=8&scope=bot%20applications.commands'
         )
-        .setStyle('LINK')
+        .setStyle('Link')
     );
     interaction.reply({
       content: 'Invite me to your server',
