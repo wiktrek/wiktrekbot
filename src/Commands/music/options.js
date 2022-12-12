@@ -30,11 +30,39 @@ module.exports = {
     }
     const queue = await client.distube.getQueue(voiceChannel);
     if (!queue) {
+      embed.setColor('Red').setDescription(`There is no active queue`);
     }
     switch (option) {
       case 'skip':
         await queue.skip(voiceChannel);
-        embed;
+        embed.setColor('Green').setDescription('⏩ The song has been skipped');
+        interaction.reply({ embeds: [embed], ephemeral: true });
+        break;
+      case 'stop':
+        await queue.stop(voiceChannel);
+        embed.setColor('Green').setDescription('🛑 The song has been stopped');
+        interaction.reply({ embeds: [embed], ephemeral: true });
+        break;
+      case 'skip':
+        await queue.pause(voiceChannel);
+        embed.setColor('Green').setDescription('⏸ The song has been paused');
+        interaction.reply({ embeds: [embed], ephemeral: true });
+        break;
+      case 'resume':
+        await queue.resume(voiceChannel);
+        embed.setColor('Green').setDescription('⏯ The song has been resumed');
+        interaction.reply({ embeds: [embed], ephemeral: true });
+        break;
+      case 'queue':
+        embed
+          .setColor('Purple')
+          .setDescription(
+            `${queue.songs.map(
+              (song, id) =>
+                `\n**${id + 1}.** ${song.name} -\`${song.formattedDuration}`
+            )}`
+          );
+        interaction.reply({ embeds: [embed], ephemeral: true });
         break;
     }
   },

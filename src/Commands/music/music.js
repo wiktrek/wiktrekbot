@@ -35,6 +35,22 @@ module.exports = {
     )
     .addSubcommand((subcommand) =>
       subcommand
+        .setName('loop')
+        .setDescription('loop')
+        .addNumberOption((option) =>
+          option
+            .setName('options')
+            .setDescription('select an option')
+            .setRequired(true)
+            .addChoices(
+              { name: 'off', value: 'off' },
+              { name: 'song', value: 'song' },
+              { name: 'queue', value: 'queue' }
+            )
+        )
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
         .setName('options')
         .setDescription('Select an option.')
         .addStringOption((option) =>
