@@ -12,42 +12,42 @@ module.exports = {
     .addSubcommand((subcommand) =>
       subcommand
         .setName('play')
-        .addDescription('Play a song')
+        .setDescription('Play a song')
         .addStringOption((option) =>
           option
             .setName('query')
             .setDescription('Provide the name or url for the song')
             .setRequired(true)
         )
-        .addSubcommand((subcommand) =>
-          subcommand
-            .setName('volume')
-            .addDescription('Adjust the song volume')
-            .addStringOption((option) =>
-              option
-                .setName('percent')
-                .setDescription('10 = 10%')
-                .setMinValue(1)
-                .setMaxValue(100)
-                .setRequired(true)
-            )
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName('volume')
+        .setDescription('Adjust the song volume')
+        .addNumberOption((option) =>
+          option
+            .setName('percent')
+            .setDescription('10 = 10%')
+            .setMinValue(1)
+            .setMaxValue(100)
+            .setRequired(true)
         )
-        .addSubcommand((subcommand) =>
-          subcommand
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName('options')
+        .setDescription('Select an option.')
+        .addStringOption((option) =>
+          option
             .setName('options')
-            .addDescription('Select an option.')
-            .addStringOption((option) =>
-              option
-                .setName('options')
-                .setDescription('Select an option')
-                .setRequired(true)
-                .addChoices(
-                  { name: 'queue', value: 'queue' },
-                  { name: 'skip', value: 'skip' },
-                  { name: 'pause', value: 'pause' },
-                  { name: 'resume', value: 'resume' },
-                  { name: 'stop', value: 'stop' }
-                )
+            .setDescription('Select an option')
+            .setRequired(true)
+            .addChoices(
+              { name: 'queue', value: 'queue' },
+              { name: 'skip', value: 'skip' },
+              { name: 'pause', value: 'pause' },
+              { name: 'resume', value: 'resume' },
+              { name: 'stop', value: 'stop' }
             )
         )
     ),

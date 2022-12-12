@@ -6,10 +6,10 @@ const {
   GuildEmoji,
 } = require('discord.js');
 module.exports = {
-  subCommand: 'music.volume',
-  execute(interaction, client) {
+  subCommand: 'music.options',
+  async execute(interaction, client) {
     const { options, guild, member, channel } = interaction;
-    const volume = options.getString('volume');
+    const option = options.getString('option');
     const voiceChannel = member.voice.channel;
     const embed = new EmbedBuilder();
     if (!voiceChannel) {
@@ -28,9 +28,14 @@ module.exports = {
         );
       return interaction.reply({ embeds: [embed], ephemeral: true });
     }
-    client.distube.setVolume(voiceChannel, volume);
-    return interaction.reply({
-      content: `🔈 Volume has been set to ${volume}`,
-    });
+    const queue = await client.distube.getQueue(voiceChannel);
+    if (!queue) {
+    }
+    switch (option) {
+      case 'skip':
+        await queue.skip(voiceChannel);
+        embed;
+        break;
+    }
   },
 };
