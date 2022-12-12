@@ -37,7 +37,7 @@ module.exports = {
       subcommand
         .setName('loop')
         .setDescription('loop')
-        .addNumberOption((option) =>
+        .addStringOption((option) =>
           option
             .setName('options')
             .setDescription('select an option')

@@ -7,9 +7,9 @@ const {
 } = require('discord.js');
 module.exports = {
   subCommand: 'music.loop',
-  execute(interaction, client) {
+  async execute(interaction, client) {
     const { options, guild, member, channel } = interaction;
-    const option = options.getString('option');
+    const option = options.getString('options');
     const voiceChannel = member.voice.channel;
     const embed = new EmbedBuilder();
     if (!voiceChannel) {
@@ -28,6 +28,7 @@ module.exports = {
         );
       return interaction.reply({ embeds: [embed], ephemeral: true });
     }
+    const queue = await client.distube.getQueue(voiceChannel);
     let mode = null;
     switch (option) {
       case 'off':
@@ -39,9 +40,13 @@ module.exports = {
         modde = 2;
         break;
     }
-    client.distube.setRepeatMode(mode);
+    mode = await queue.setRepeatMode(mode);
+    mode = mode ? (mode === 2 ? 'Repeat queue' : 'Repeat song') : 'Off';
+    embed
+      .setColor('Orange')
+      .setDescription(`🔄 Set repeat mode to \`${mode}\`.`);
     return interaction.reply({
-      content: `🔈 Volume has been set to ${volume}`,
+      embeds: [embed],
     });
   },
 };

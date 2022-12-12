@@ -9,7 +9,7 @@ module.exports = {
   subCommand: 'music.options',
   async execute(interaction, client) {
     const { options, guild, member, channel } = interaction;
-    const option = options.getString('option');
+    const option = options.getString('options');
     const voiceChannel = member.voice.channel;
     const embed = new EmbedBuilder();
     if (!voiceChannel) {
@@ -36,23 +36,19 @@ module.exports = {
       case 'skip':
         await queue.skip(voiceChannel);
         embed.setColor('Green').setDescription('⏩ The song has been skipped');
-        interaction.reply({ embeds: [embed], ephemeral: true });
-        break;
+        return interaction.reply({ embeds: [embed], ephemeral: true });
       case 'stop':
         await queue.stop(voiceChannel);
         embed.setColor('Green').setDescription('🛑 The song has been stopped');
-        interaction.reply({ embeds: [embed], ephemeral: true });
-        break;
+        return interaction.reply({ embeds: [embed], ephemeral: true });
       case 'skip':
         await queue.pause(voiceChannel);
         embed.setColor('Green').setDescription('⏸ The song has been paused');
-        interaction.reply({ embeds: [embed], ephemeral: true });
-        break;
+        return interaction.reply({ embeds: [embed], ephemeral: true });
       case 'resume':
         await queue.resume(voiceChannel);
         embed.setColor('Green').setDescription('⏯ The song has been resumed');
-        interaction.reply({ embeds: [embed], ephemeral: true });
-        break;
+        return interaction.reply({ embeds: [embed], ephemeral: true });
       case 'queue':
         embed
           .setColor('Purple')
@@ -62,8 +58,7 @@ module.exports = {
                 `\n**${id + 1}.** ${song.name} -\`${song.formattedDuration}`
             )}`
           );
-        interaction.reply({ embeds: [embed], ephemeral: true });
-        break;
+        return interaction.reply({ embeds: [embed], ephemeral: true });
     }
   },
 };
