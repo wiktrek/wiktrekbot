@@ -8,7 +8,6 @@
     "libsodium-wrappers": "^0.7.10",
     "mongoose": "^6.7.2",
     "ms": "^2.1.3",
-    "node": "^17.9.1",
     "nodemon": "^2.0.20",
     "simply-djs": "^3.0.2"
   },
