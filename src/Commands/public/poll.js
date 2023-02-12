@@ -3,6 +3,9 @@ const {
   PermissionFlagsBits,
   ChatInputCommandInteraction,
   EmbedBuilder,
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
 } = require('discord.js');
 module.exports = {
   data: new SlashCommandBuilder()
@@ -19,7 +22,7 @@ module.exports = {
   /**
    * @param {ChatInputInteraction} interaction
    */
-  execute(interaction) {
+  async execute(interaction) {
     const pollQuestion = interaction.options.getString('question');
     const pollEmbed = new EmbedBuilder()
       .setDescription('**Question**\n' + pollQuestion)
@@ -30,7 +33,22 @@ module.exports = {
       ])
       .setColor([104, 204, 156]);
 
+    const replyObject = await interaction.reply({
+      embeds: [pollEmbed],
+      fetchReply: true,
+    });
 
-      
+    const pollButtons = new ActionRowBuilder().addComponents(
+      new ButtonBuilder()
+        .setLabel('Yes')
+        .setCustomId(`Poll-Yes-${replyObject.id}`)
+        .setStyle(ButtonStyle.Success),
+      new ButtonBuilder()
+        .setLabel('No')
+        .setCustomId(`Poll-No-${replyObject.id}`)
+        .setStyle(ButtonStyle.Danger)
+    );
+
+    interaction.editReply({ components: [pollButtons] });
   },
 };
