@@ -4,7 +4,6 @@ const {
   ChatInputCommandInteraction,
   EmbedBuilder,
   ChannelType,
-  Embed,
 } = require('discord.js');
 const DB = require('../../Schemas/MemberLog');
 module.exports = {
