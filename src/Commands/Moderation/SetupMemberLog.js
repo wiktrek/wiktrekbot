@@ -4,7 +4,9 @@ const {
   ChatInputCommandInteraction,
   EmbedBuilder,
   ChannelType,
+  Embed,
 } = require('discord.js');
+const DB = require('../../Schemas/MemberLog');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('setup_memberlog')
@@ -33,7 +35,44 @@ module.exports = {
   /**
    * @param {ChatInputCommandInteraction} interaction
    */
-  async execut(interaction, client) {
-    const {} = interaction;
+  async execute(interaction, client) {
+    const { options, guild } = interaction;
+    const logChannel = options.getChannel('log_channel').id;
+
+    let memberRole = options.getRole('member_role')
+      ? options.getRole('member_role').id
+      : null;
+    let botRole = options.getRole('bot_role')
+      ? options.getRole('bot_role').id
+      : null;
+    await DB.findOneAndUpdate(
+      { Guild: guild.id },
+      {
+        logChannel: logChannel,
+        memberRole: memberRole,
+        botRole: botRole,
+      },
+      { new: true, upsert: true }
+    );
+    client.guildConfig.set(guild.id, {
+      logChannel: logChannel,
+      memberRole: memberRole,
+      botRole: botRole,
+    });
+    const Embed = new EmbedBuilder()
+      .setColor('Green')
+      .setDescription(
+        [
+          `- logging Channel updated: <#${logChannel}>`,
+          `- Member Auto-Role updated: ${
+            memberRole ? `<@&${memberRole}>` : 'Not Specified'
+          }`,
+          `- Bot Auto-Role updated: ${
+            botRole ? `<@&${botRole}>` : 'Not Specified'
+          }`,
+        ].join('\n')
+      );
+
+    return interaction.reply({ embeds: [Embed] });
   },
 };
