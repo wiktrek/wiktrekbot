@@ -6,12 +6,13 @@ module.exports = {
    *
    */
   async execute(member, client) {
-    const GuildConifg = client.guildConfig.get(member.guild.id);
+    const GuildConfig = client.guildConfig.get(member.guild.id);
     const logChannel = (await member.guild.channels.fetch()).get(
       GuildConfig.logChannel
     );
+    if (!logChannel) return;
     const accountCreation = parseInt(member.user.createdTimestamp / 1000);
-    const Embed = EmbedBuilder()
+    const Embed = new EmbedBuilder()
       .setAuthor({
         name: `${member.user.tag} | ${member.id}`,
         iconURL: member.displayAvatarURL({ dynamic: true }),
