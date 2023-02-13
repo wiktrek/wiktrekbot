@@ -7,7 +7,7 @@ module.exports = {
     .addStringOption((option) =>
       option
         .setName('status')
-        .setDescription("status. Write 'reset' t reset bot's status")
+        .setDescription("status. Write 'reset' to reset bot's status")
         .setRequired(true)
     ),
   execute(interaction, client) {
