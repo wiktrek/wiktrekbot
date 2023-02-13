@@ -1,5 +1,5 @@
 const {
-  SlashCommandBUilder,
+  SlashCommandBuilder,
   PermissionFlagsBits,
   Client,
   ChatInputCommandInteraction,
