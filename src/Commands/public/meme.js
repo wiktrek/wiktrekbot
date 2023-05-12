@@ -19,6 +19,9 @@ module.exports = {
     const embed = new EmbedBuilder()
       .setTitle(data.title)
       .setImage(data.url)
+      .setDescription(
+        `**Sub-Reddit**: ${data.subreddit} \n :arrow_up:**Upvotes**: ${data.ups}️ \n ⬇**Downvotes**:️ ${data.downs}`
+      )
       .setFooter({ text: `Author: ${data.author}` });
     interaction.reply({ embeds: [embed] });
   },
