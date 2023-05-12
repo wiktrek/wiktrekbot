@@ -16,7 +16,10 @@ module.exports = {
       response.data.data.children[
         Math.floor(Math.random() * response.data.data.children.length)
       ];
-    const embed = new EmbedBuilder().setTitle(data.title).setImage(data.url);
-    interaction.reply({ content: 'pong!', embeds: [embed] });
+    const embed = new EmbedBuilder()
+      .setTitle(data.title)
+      .setImage(data.url)
+      .setFooter({ text: `Author: ${data.author}` });
+    interaction.reply({ embeds: [embed] });
   },
 };
