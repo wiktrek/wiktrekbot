@@ -1,7 +1,7 @@
 import { CommandInteraction, InteractionDataOptionsString } from 'eris';
 export default {
-  name: 'ping',
-  description: 'replies with pong!',
+  name: 'serverinfo',
+  description: 'server info',
   options: [],
   run: async (
     interaction: CommandInteraction,

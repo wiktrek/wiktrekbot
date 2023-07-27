@@ -14,7 +14,11 @@ export default {
 
         const command = client.commands.get(commandName);
         console.log(command);
-        command(interaction, args);
+        if (command === undefined)
+          return interaction.createMessage(
+            "Couldn't find command '" + commandName
+          );
+        command.run(interaction, args);
       }
     });
   },
