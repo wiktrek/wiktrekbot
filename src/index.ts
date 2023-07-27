@@ -1,11 +1,10 @@
-import Eris from "eris"
 import 'dotenv/config'
 import { eventHandler }from './handlers/eventHandler'
-const client = new Eris.Client(process.env.TOKEN as string, {intents: [
+import { commandHandler } from './handlers/commandHandler'
+import { Client } from './Client'
+const client = new Client(process.env.TOKEN as string, {intents: [
 "all"
 ]})
-client.on("ready", () => {
-  console.log("Ready!" + client.user.username);
-});
+commandHandler(client)
 eventHandler(client)
 client.connect()

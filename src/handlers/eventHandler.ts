@@ -12,13 +12,10 @@ export async function eventHandler(client: Client) {
         );
         for (const file of eventFiles) {
             const event: Event = await import(`../events/${file}`);
-            console.log(event);
-            // if there is no event name throw an error
             if (!event.default.name) {
-                throw new Error(`${file} needs to have a command.name!`);
+                throw new Error(`${file}`);
             }
 
-            console.log(event.default.name);
             event.default.run(client)
         }
 }

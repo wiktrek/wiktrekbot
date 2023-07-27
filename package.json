@@ -2,9 +2,8 @@
   "dependencies": {
     "@types/node": "^20.4.5",
     "dotenv": "^16.3.1",
-    "eris": "^0.17.2"
-  },
-  "devDependencies": {
+    "eris": "^0.17.2",
+    "table": "^6.8.1"
   },
   "scripts": {
     "dev": "nodemon src/index.ts",
