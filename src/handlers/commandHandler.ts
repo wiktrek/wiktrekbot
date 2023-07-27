@@ -1,5 +1,5 @@
-import { Client } from "../Client";
-import { readdirSync } from "fs";
+import { Client } from '../Client';
+import { readdirSync } from 'fs';
 interface Command {
   default: {
     name: string;
@@ -8,8 +8,8 @@ interface Command {
   };
 }
 export async function commandHandler(client: Client) {
-  const commandFiles = readdirSync("./src/commands/").filter((f) =>
-    f.endsWith(".ts"),
+  const commandFiles = readdirSync('./src/commands/').filter((f) =>
+    f.endsWith('.ts')
   );
   for (const file of commandFiles) {
     const command: Command = await import(`../commands/${file}`);
