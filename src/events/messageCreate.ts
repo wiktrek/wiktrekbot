@@ -1,8 +1,8 @@
-import { Client, Message } from 'eris';
+import { Client, Message } from "eris";
 export default {
-  name: 'messageCreate',
+  name: "messageCreate",
   run: async (client: Client) => {
-    client.on('messageCreate', (msg) => {
+    client.on("messageCreate", (msg) => {
       console.log(msg.content);
     });
   },
