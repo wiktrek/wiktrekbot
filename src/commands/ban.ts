@@ -28,9 +28,15 @@ export default {
   ) => {
     const target = (args[0] as InteractionDataOptionsUser).value;
 
+    if (!interaction.member?.permissions.has('banMembers'))
+      return interaction.createMessage({
+        content: "You don't have the permissions to ban this user.",
+      });
     if (interaction.member?.id === target) {
       return interaction.createMessage({ content: "You can't ban yourself." });
     }
+    if (target === '960996823521189928' || target === '942891118201307156')
+      return interaction.createMessage({ content: "You can't ban me" });
     if (args[1] === undefined) {
       interaction.member?.guild.members.get(target)?.ban(0, '');
       return interaction.createMessage({
