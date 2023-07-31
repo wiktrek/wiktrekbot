@@ -14,7 +14,7 @@ export async function commandHandler(client: Client) {
   // const commandFiles = readdirSync('./src/commands/').filter((f) =>
   //   f.endsWith('.ts')
   // );
-  console.log(commandFiles);
+  // console.log(commandFiles);
   for (const file of commandFiles) {
     const command: Command = await import(
       `${file.replaceAll('\\', '/').replace('src', '..')}`
