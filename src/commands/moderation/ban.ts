@@ -10,7 +10,7 @@ export default {
   description: 'ban',
   options: [
     {
-      name: 'target', //The name of the option
+      name: 'target',
       description: 'User to ban',
       type: Constants.ApplicationCommandOptionTypes.USER,
       required: true,
