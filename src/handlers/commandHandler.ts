@@ -1,6 +1,6 @@
 import { Client } from '../Client';
 import Eris, { Constants } from 'eris';
-import { readdirSync } from 'fs';
+const { glob } = require('glob');
 interface Command {
   default: {
     name: string;
@@ -10,11 +10,15 @@ interface Command {
   };
 }
 export async function commandHandler(client: Client) {
-  const commandFiles = readdirSync('./src/commands/').filter((f) =>
-    f.endsWith('.ts')
-  );
+  const commandFiles = await glob('./src/commands/**/*.ts');
+  // const commandFiles = readdirSync('./src/commands/').filter((f) =>
+  //   f.endsWith('.ts')
+  // );
+  console.log(commandFiles);
   for (const file of commandFiles) {
-    const command: Command = await import(`../commands/${file}`);
+    const command: Command = await import(
+      `${file.replaceAll('\\', '/').replace('src', '..')}`
+    );
     // If the command does not have a name and description provided it throws an error.
     if (!command.default.name) {
       throw new Error(`${file} needs to have a command.name!`);
