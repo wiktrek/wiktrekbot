@@ -26,6 +26,22 @@ export default {
           name: 'bed',
           value: 'bed',
         },
+        {
+          name: 'fuse',
+          value: 'fuse',
+        },
+        {
+          name: 'kiss',
+          value: 'kiss',
+        },
+        {
+          name: 'rip',
+          value: 'rip',
+        },
+        {
+          name: 'slap',
+          value: 'slap',
+        },
       ],
     },
     {
@@ -54,16 +70,33 @@ export default {
       case 'bed':
         {
           const img = await canvacord.Canvacord.bed(img2, img1);
-          interaction.createMessage(
-            { content: '' },
-            { name: 'e.png', file: img }
-          );
+          send(img);
         }
         break;
       case 'fuse':
         {
+          const img = await canvacord.Canvacord.fuse(img2, img1);
+          send(img);
         }
         break;
+      case 'kiss': {
+        const img = await canvacord.Canvacord.kiss(img2, img1);
+        send(img);
+      }
+      case 'slap': {
+        const img = await canvacord.Canvacord.slap(img2, img1);
+        send(img);
+      }
+      case 'rip': {
+        const img = await canvacord.Canvacord.rip(img1);
+        send(img);
+      }
+    }
+    function send(img: Buffer) {
+      interaction.createMessage(
+        { content: '' },
+        { name: 'image.png', file: img }
+      );
     }
   },
 };
