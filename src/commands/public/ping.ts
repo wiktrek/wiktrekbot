@@ -7,6 +7,6 @@ export default {
     interaction: CommandInteraction,
     args: InteractionDataOptionsString[]
   ) => {
-    interaction.createMessage({ content: 'Pong!' });
+    interaction.createFollowup({ content: 'Pong!' });
   },
 };

@@ -8,7 +8,7 @@ import { client } from '../../index';
 import { CommandData } from '../../Client';
 export default {
   name: 'help',
-  description: 'help',
+  description: 'help command',
   options: [],
   run: async (
     interaction: CommandInteraction,
@@ -31,6 +31,9 @@ export default {
         },
       ],
     };
-    interaction.createMessage({ components: [component] });
+    interaction.createMessage({
+      content: `Select command`,
+      components: [component],
+    });
   },
 };

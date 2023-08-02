@@ -41,7 +41,7 @@ export async function commandHandler(client: Client) {
   const commands: string[][] = [];
   client.commands.forEach((e, name) => {
     if (name === 'undefined') return;
-    commands.push([name, e.category, `✅`]);
+    commands.push([name, `✅`]);
   });
   console.log('Commands:');
   const t = Table(commands);
