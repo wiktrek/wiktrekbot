@@ -1,5 +1,5 @@
 import { Client } from '../Client';
-import Table from 'text-table';
+
 import { CommandData } from '../Client';
 import { ApplicationCommandStructure, Constants } from 'eris';
 export default {
@@ -12,15 +12,6 @@ export default {
         type: 3,
       });
       console.log('Servers: ' + client.guilds.size);
-
-      const commands: string[][] = [];
-      client.commands.forEach((e, name) => {
-        if (name === 'undefined') return;
-        commands.push([name, `✅`]);
-      });
-      console.log('Commands:');
-      const t = Table(commands);
-      console.log(t);
     });
   },
 };

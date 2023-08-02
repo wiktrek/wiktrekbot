@@ -2,6 +2,7 @@ import { Client as DiscordClient, ClientOptions } from 'eris';
 export interface CommandData {
   description: string;
   options: any[];
+  category: string;
   run: any;
 }
 export class Client extends DiscordClient {

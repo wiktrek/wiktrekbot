@@ -1,6 +1,7 @@
 import { Client } from '../Client';
 import Eris, { Constants } from 'eris';
 const { glob } = require('glob');
+import Table from 'text-table';
 interface Command {
   default: {
     name: string;
@@ -26,23 +27,23 @@ export async function commandHandler(client: Client) {
     if (!command.default.description) {
       throw new Error(`${file} needs to have a command.description!`);
     }
-
+    const category = file
+      .replaceAll('\\', '/')
+      .replace('src/commands/', '')
+      .replace(`/${command.default.name}.ts`, '');
     client.commands.set(command.default.name, {
       description: command.default.description,
       options: command.default.options,
+      category: category,
       run: command.default.run,
     });
-
-    // console.log(command.default);
-
-    // console.log(await client.getCommands());
-    // client.deleteCommand('1026159446931550273');
-
-    // client.createCommand({
-    //   name: command.default.name,
-    //   description: command.default.description,
-    //   options: command.default.options,
-    // type: Constants.ApplicationCommandTypes.CHAT_INPUT,
-    // });
   }
+  const commands: string[][] = [];
+  client.commands.forEach((e, name) => {
+    if (name === 'undefined') return;
+    commands.push([name, e.category, `✅`]);
+  });
+  console.log('Commands:');
+  const t = Table(commands);
+  console.log(t);
 }
