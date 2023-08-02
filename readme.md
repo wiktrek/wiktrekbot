@@ -2,6 +2,6 @@
 
 # tools
 
-### eris
+### [eris](https://abal.moe/Eris/)
 
-### typescript
+### [typescript](https://www.typescriptlang.org/)

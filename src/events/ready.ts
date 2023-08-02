@@ -8,7 +8,7 @@ export default {
     client.on('ready', () => {
       registerCommands(client);
       client.editStatus('online', {
-        name: `${client.guilds.size} servers`,
+        name: `${client.guilds.size} servers!`,
         type: 3,
       });
       console.log('Servers: ' + client.guilds.size);
