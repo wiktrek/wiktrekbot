@@ -2,6 +2,7 @@ import {
   CommandInteraction,
   ComponentInteraction,
   ComponentInteractionSelectMenuData,
+  EmbedOptions,
 } from 'eris';
 import { Client } from '../Client';
 export default {
@@ -9,6 +10,7 @@ export default {
   run: async (client: Client) => {
     client.on('interactionCreate', async (interaction) => {
       if (interaction instanceof CommandInteraction) {
+        await interaction.defer();
         if (interaction.guildID == undefined) {
           interaction.createMessage('You cannot run commands outside of guild');
           return;
@@ -25,6 +27,7 @@ export default {
         command.run(interaction, args);
       }
       if (interaction instanceof ComponentInteraction) {
+        await interaction.deferUpdate();
         if (
           interaction.data.component_type === 3 &&
           interaction.data.custom_id === 'helpMenu'
@@ -34,7 +37,21 @@ export default {
               (interaction.data as ComponentInteractionSelectMenuData)
                 .values[0] === name
             ) {
-              return interaction.createMessage(options.description);
+              const embed: EmbedOptions = {
+                title: name,
+                color: 0x3366ff,
+                fields: [
+                  {
+                    name: 'description',
+                    value: options.description,
+                  },
+                  {
+                    name: 'category',
+                    value: options.category,
+                  },
+                ],
+              };
+              return interaction.createFollowup({ embeds: [embed] });
             }
           });
         }
