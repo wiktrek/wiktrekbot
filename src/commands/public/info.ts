@@ -3,6 +3,7 @@ import {
   EmbedOptions,
   InteractionDataOptionsString,
 } from 'eris';
+import { client } from '../../index';
 export default {
   name: 'info',
   description: 'Replies with info',
@@ -14,7 +15,12 @@ export default {
     const embed: EmbedOptions = {
       title: 'Wiktrekbot',
       description: '',
+      color: 0xff00ff,
       fields: [
+        {
+          name: 'website',
+          value: '[wiktrek.xyz](https://wiktrek.xyz)',
+        },
         {
           name: 'Languages',
           value: 'english',
@@ -24,12 +30,8 @@ export default {
           value: `[github/wiktrek/wiktrekbot](https://github.com/wiktrek/wiktrekbot)`,
         },
         {
-          name: 'Programming languages',
-          value: 'typescript',
-        },
-        {
-          name: '',
-          value: '',
+          name: 'Commands',
+          value: `${client.commands.size}`,
         },
       ],
     };
