@@ -1,4 +1,4 @@
-const { Schema, model, connect } = require('mongoose');
+const { Schema, model } = require('mongoose');
 const ObjectId = Schema.ObjectId;
 
 const Test = new Schema({
