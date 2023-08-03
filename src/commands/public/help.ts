@@ -1,6 +1,7 @@
 import {
   ActionRow,
   CommandInteraction,
+  Constants,
   InteractionDataOptionsString,
   SelectMenuOptions,
 } from 'eris';
@@ -31,7 +32,7 @@ export default {
         },
       ],
     };
-    interaction.createMessage({
+    interaction.createFollowup({
       content: `Select command`,
       components: [component],
     });

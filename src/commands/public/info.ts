@@ -13,7 +13,7 @@ export default {
     args: InteractionDataOptionsString[]
   ) => {
     const embed: EmbedOptions = {
-      title: 'Wiktrekbot',
+      title: 'wiktrekbot',
       description: '',
       color: 0xff00ff,
       fields: [
