@@ -1,9 +1,7 @@
-import { Schema, model, connect } from 'mongoose';
+const { Schema, model, connect } = require('mongoose');
 const ObjectId = Schema.ObjectId;
-interface Test {
-  name?: string;
-}
-const Test = new Schema<Test>({
+
+const Test = new Schema({
   name: String,
 });
 export const testModel = model('Test', Test);

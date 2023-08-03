@@ -1,5 +1,5 @@
 import { CommandInteraction, InteractionDataOptionsString } from 'eris';
-const mongoose = require('mongoose');
+import { testModel } from '../../Schemas/test';
 export default {
   name: 'test',
   description: 'test',
@@ -8,8 +8,7 @@ export default {
     interaction: CommandInteraction,
     args: InteractionDataOptionsString[]
   ) => {
-    const Test = mongoose.model('Test');
-    const test = new Test({
+    const test = new testModel({
       name: 'Bill',
     });
     await test.save();
