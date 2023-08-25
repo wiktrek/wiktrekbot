@@ -27,4 +27,5 @@ function registerCommands(client: Client) {
     });
   });
   client.bulkEditCommands(commands);
+  client.bulkEditGuildCommands('846267160938283048', commands);
 }

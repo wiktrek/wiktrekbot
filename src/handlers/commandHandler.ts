@@ -6,6 +6,7 @@ interface Command {
   default: {
     name: string;
     description: string;
+    cooldown?: number;
     options: any[];
     run: any;
   };
@@ -35,6 +36,7 @@ export async function commandHandler(client: Client) {
       description: command.default.description,
       options: command.default.options,
       category: category,
+      cooldown: command.default.cooldown || 0,
       run: command.default.run,
     });
   }

@@ -4,7 +4,7 @@ import {
   ComponentInteractionSelectMenuData,
   EmbedOptions,
 } from 'eris';
-import { Client } from '../Client';
+import { Client, Cooldown } from '../Client';
 export default {
   name: 'interactionCreate',
   run: async (client: Client) => {
@@ -24,6 +24,15 @@ export default {
           return interaction.createMessage(
             "Couldn't find command '" + commandName
           );
+        let memberId = interaction.member?.id as string;
+        if (
+          command.cooldown &&
+          client.cooldown.includes({
+            command: commandName,
+            user: memberId,
+          } as Cooldown)
+        )
+          return interaction.createMessage('Cooldown');
         command.run(interaction, args);
       }
       if (interaction instanceof ComponentInteraction) {
