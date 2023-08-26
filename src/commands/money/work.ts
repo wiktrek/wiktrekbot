@@ -38,9 +38,6 @@ export default {
       title: `${interaction.member?.username}`,
       description: `You got $${random}!`,
       color: 0x069e2d,
-      footer: {
-        text: 'ez',
-      },
     };
     interaction.createMessage({ embeds: [embed] });
   },

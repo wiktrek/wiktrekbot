@@ -48,9 +48,6 @@ export default {
         return `${a}.${member.member} ${member.money} \n`;
       })}`.replace(',', ' '),
       color: 0x069e2d,
-      footer: {
-        text: 'ez',
-      },
     };
     interaction.createMessage({ embeds: [embed] });
   },

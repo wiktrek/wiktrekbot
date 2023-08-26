@@ -30,9 +30,6 @@ export default {
       title: `${interaction.member?.username}`,
       description: `You have $${user.money}`,
       color: 0x069e2d,
-      footer: {
-        text: 'ez',
-      },
     };
     interaction.createMessage({ embeds: [embed] });
   },
