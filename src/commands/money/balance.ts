@@ -4,9 +4,7 @@ import {
   InteractionDataOptionsString,
 } from 'eris';
 import { MoneyModel } from '../../Schemas/money';
-interface Joke {
-  joke: string;
-}
+
 export default {
   name: 'balance',
   description: 'Check your balance',
@@ -16,7 +14,6 @@ export default {
     interaction: CommandInteraction,
     args: InteractionDataOptionsString[]
   ) => {
-    MoneyModel.findOne();
     let user = await MoneyModel.findOne({
       guildId: interaction.member?.guild.id,
       userId: interaction.member?.id,
@@ -31,7 +28,7 @@ export default {
     }
     const embed: EmbedOptions = {
       title: `${interaction.member?.username}`,
-      description: `You have ${user.money}$`,
+      description: `You have $${user.money}`,
       color: 0x069e2d,
       footer: {
         text: 'ez',

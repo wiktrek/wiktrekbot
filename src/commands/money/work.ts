@@ -3,9 +3,7 @@ import {
   EmbedOptions,
   InteractionDataOptionsString,
 } from 'eris';
-interface Joke {
-  joke: string;
-}
+import { MoneyModel } from '../../Schemas/money';
 export default {
   name: 'work',
   description: 'Work',
@@ -15,15 +13,30 @@ export default {
     interaction: CommandInteraction,
     args: InteractionDataOptionsString[]
   ) => {
-    // @ts-ignore: Object is possibly 'null'.
     const low = 1;
-    // @ts-ignore: Object is possibly 'null'.
     const max = 100;
 
     const random = Math.floor(Math.random() * (max - low + 1) + low);
+    let user = await MoneyModel.findOneAndUpdate(
+      {
+        guildId: interaction.member?.guild.id,
+        userId: interaction.member?.id,
+      },
+      {
+        $inc: { money: random },
+      }
+    ).exec();
+    if (!user) {
+      let Money = new MoneyModel({
+        guildId: interaction.member?.guild.id,
+        userId: interaction.member?.id,
+        money: random,
+      });
+      await Money.save();
+    }
     const embed: EmbedOptions = {
       title: `${interaction.member?.username}`,
-      description: `You got ${random}$!`,
+      description: `You got $${random}!`,
       color: 0x069e2d,
       footer: {
         text: 'ez',
