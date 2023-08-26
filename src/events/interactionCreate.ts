@@ -25,16 +25,36 @@ export default {
             "Couldn't find command '" + commandName
           );
         let memberId = interaction.member?.id as string;
+        if (command.cooldown) {
+          console.log('COOLDOWN');
+        }
         if (
-          command.cooldown &&
           client.cooldown.includes({
             command: commandName,
             user: memberId,
           } as Cooldown)
         )
           return interaction.createMessage('Cooldown');
+        // return interaction.createMessage('Cooldown');
+        console.log(client.cooldown);
+        const hasCooldown = client.cooldown.map((c) => {
+          if (c.command === commandName && c.user === memberId) {
+            interaction.createMessage('COOLDOWN');
+            return true;
+          }
+
+          return false;
+        });
+        console.log(hasCooldown);
+        if (hasCooldown.includes(true)) return;
+        client.cooldown.push({
+          command: commandName,
+          user: memberId,
+          time: command.cooldown,
+        } as Cooldown);
         command.run(interaction, args);
       }
+
       if (interaction instanceof ComponentInteraction) {
         await interaction.deferUpdate();
         if (
