@@ -1,0 +1,42 @@
+import {
+  CommandInteraction,
+  EmbedOptions,
+  InteractionDataOptionsString,
+} from 'eris';
+import { MoneyModel } from '../../Schemas/money';
+interface Joke {
+  joke: string;
+}
+export default {
+  name: 'balance',
+  description: 'Check your balance',
+  cooldown: 10,
+  options: [],
+  run: async (
+    interaction: CommandInteraction,
+    args: InteractionDataOptionsString[]
+  ) => {
+    MoneyModel.findOne();
+    let user = await MoneyModel.findOne({
+      guildId: interaction.member?.guild.id,
+      userId: interaction.member?.id,
+    }).exec();
+    if (!user) {
+      let Money = new MoneyModel({
+        guildId: interaction.member?.guild.id,
+        userId: interaction.member?.id,
+        money: 0,
+      });
+      await Money.save();
+    }
+    const embed: EmbedOptions = {
+      title: `${interaction.member?.username}`,
+      description: `You have ${user.money}$`,
+      color: 0x069e2d,
+      footer: {
+        text: 'ez',
+      },
+    };
+    interaction.createMessage({ embeds: [embed] });
+  },
+};

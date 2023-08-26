@@ -6,4 +6,5 @@ const Money = new Schema({
   userId: { type: String, require: true },
   money: { type: Number, default: 0 },
 });
-export const testModel = model('Money', Money);
+export const MoneyModel = model('Money', Money);
+
