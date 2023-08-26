@@ -7,4 +7,3 @@ const Money = new Schema({
   money: { type: Number, default: 0 },
 });
 export const MoneyModel = model('Money', Money);
-
