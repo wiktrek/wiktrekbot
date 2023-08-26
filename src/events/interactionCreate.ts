@@ -19,39 +19,40 @@ export default {
         const args = interaction.data.options;
 
         const command = client.commands.get(commandName);
-        // console.log(command);
         if (command === undefined)
           return interaction.createMessage(
             "Couldn't find command '" + commandName
           );
         let memberId = interaction.member?.id as string;
-        if (command.cooldown) {
-          console.log('COOLDOWN');
-        }
-        if (
-          client.cooldown.includes({
-            command: commandName,
-            user: memberId,
-          } as Cooldown)
-        )
-          return interaction.createMessage('Cooldown');
+
         // return interaction.createMessage('Cooldown');
-        console.log(client.cooldown);
-        const hasCooldown = client.cooldown.map((c) => {
+        const hasCooldown = client.cooldown.map((c, i) => {
+          let timestamp = c.timestamp + (command.cooldown || 0) * 1000;
           if (c.command === commandName && c.user === memberId) {
-            interaction.createMessage('COOLDOWN');
+            if (timestamp < Date.now()) {
+              client.cooldown.splice(i, 1);
+              return false;
+            }
+            interaction.createMessage(
+              `You can ${commandName} <t:${timestamp
+                .toString()
+                .slice(0, -3)}:R>`
+            );
             return true;
           }
 
           return false;
         });
-        console.log(hasCooldown);
+
         if (hasCooldown.includes(true)) return;
-        client.cooldown.push({
-          command: commandName,
-          user: memberId,
-          time: command.cooldown,
-        } as Cooldown);
+        if (command.cooldown) {
+          client.cooldown.push({
+            command: commandName,
+            user: memberId,
+            time: command.cooldown,
+            timestamp: Date.now(),
+          } as Cooldown);
+        }
         command.run(interaction, args);
       }
 

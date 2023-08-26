@@ -9,7 +9,8 @@ export interface CommandData {
 export interface Cooldown {
   user: string;
   command: string;
-  time?: number;
+  time: number;
+  timestamp: number;
 }
 export class Client extends DiscordClient {
   commands: Map<string, CommandData>;
