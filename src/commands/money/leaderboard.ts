@@ -5,7 +5,7 @@ import {
   Member,
 } from 'eris';
 import { MoneyModel } from '../../Schemas/money';
-import interactionCreate from '~/events/interactionCreate';
+import { getMember } from '../../functions/getMember';
 interface leaderboard {
   member: string;
   money: number;
@@ -47,12 +47,8 @@ export default {
         a += 1;
         return `${a}.${member.member} ${member.money} \n`;
       })}`.replace(',', ' '),
-      color: 0x00d9c,
+      color: 0x00d9c0,
     };
     interaction.createMessage({ embeds: [embed] });
   },
 };
-function getMember(id: string, interaction: CommandInteraction): Member {
-  let member = interaction.member?.guild.members.get(id);
-  return member as Member;
-}

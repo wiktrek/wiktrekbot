@@ -8,6 +8,8 @@ import {
   Member,
 } from 'eris';
 import { MoneyModel } from '../../Schemas/money';
+import { getMember } from '../../functions/getMember';
+
 export default {
   name: 'steal',
   description: 'steal',
@@ -79,7 +81,3 @@ export default {
     interaction.createMessage({ embeds: [embed] });
   },
 };
-function getMember(id: string, interaction: CommandInteraction): Member {
-  let member = interaction.member?.guild.members.get(id);
-  return member as Member;
-}
