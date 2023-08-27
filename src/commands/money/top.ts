@@ -47,7 +47,7 @@ export default {
         a += 1;
         return `${a}.${member.member} ${member.money} \n`;
       })}`.replace(',', ' '),
-      color: 0x069e2d,
+      color: 0x00d9c,
     };
     interaction.createMessage({ embeds: [embed] });
   },

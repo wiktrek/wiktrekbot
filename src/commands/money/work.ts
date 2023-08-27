@@ -37,7 +37,7 @@ export default {
     const embed: EmbedOptions = {
       title: `${interaction.member?.username}`,
       description: `You got $${random}!`,
-      color: 0x069e2d,
+      color: 0x00d9c,
     };
     interaction.createMessage({ embeds: [embed] });
   },

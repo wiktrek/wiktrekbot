@@ -29,7 +29,7 @@ export default {
     const embed: EmbedOptions = {
       title: `${interaction.member?.username}`,
       description: `You have $${user.money}`,
-      color: 0x069e2d,
+      color: 0x00d9c0,
     };
     interaction.createMessage({ embeds: [embed] });
   },

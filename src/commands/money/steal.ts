@@ -9,21 +9,15 @@ import {
 } from 'eris';
 import { MoneyModel } from '../../Schemas/money';
 export default {
-  name: 'give',
-  description: 'give money',
+  name: 'steal',
+  description: 'steal',
   cooldown: 10,
   options: [
     {
       required: true,
       name: 'member',
-      description: 'Give money to a user',
+      description: 'steal from this member',
       type: Constants.ApplicationCommandOptionTypes.USER,
-    },
-    {
-      name: 'amount',
-      description: 'amount of money you want to give',
-      type: Constants.ApplicationCommandOptionTypes.NUMBER,
-      required: true,
     },
   ],
   run: async (
@@ -31,25 +25,33 @@ export default {
     args: InteractionDataOptions[]
   ) => {
     const target = (args[0] as InteractionDataOptionsUser).value;
-    const money: number = Number(
-      (args[1] as InteractionDataOptionsString).value
-    );
 
-    if (money <= 0)
-      return interaction.createMessage(
-        "You can't give negative amount of money"
-      );
-    let user = await MoneyModel.findOne({
+    let user_target = await MoneyModel.findOneAndUpdate({
       guildId: interaction.member?.guild.id,
-      userId: interaction.member?.id,
+      userId: target,
     }).exec();
-    if (user.money < money) {
-      return interaction.createMessage("You don't have enough money.");
-    }
-    let user_target = await MoneyModel.findOneAndUpdate(
-      {
+    if (!user_target) {
+      let Money = new MoneyModel({
         guildId: interaction.member?.guild.id,
         userId: target,
+        money: 0,
+      });
+      await Money.save();
+      return interaction.createMessage(
+        `${getMember(target, interaction)} has no money`
+      );
+    }
+    console.log(target, user_target);
+    console.log(user_target.money);
+    const low = 1;
+    const max = user_target.money;
+
+    const money = Math.floor(Math.random() * (max - low + 1) + low);
+    console.log(money);
+    await MoneyModel.findOneAndUpdate(
+      {
+        guildId: interaction.member?.guild.id,
+        userId: interaction.member?.id,
       },
       {
         $inc: { money: money },
@@ -58,25 +60,18 @@ export default {
     await MoneyModel.findOneAndUpdate(
       {
         guildId: interaction.member?.guild.id,
-        userId: interaction.member?.id,
+        userId: target,
       },
       {
         $inc: { money: money * -1 },
       }
     ).exec();
-    if (!user_target) {
-      let Money = new MoneyModel({
-        guildId: interaction.member?.guild.id,
-        userId: target,
-        money: money,
-      });
-      await Money.save();
-    }
+
     const embed: EmbedOptions = {
       title: `${interaction.member?.username}`,
-      description: `You gave ${
+      description: `You stole $${money} from ${
         getMember(target, interaction).username
-      } $${money}`,
+      } `,
       color: 0x00d9c0,
     };
     interaction.createMessage({ embeds: [embed] });
