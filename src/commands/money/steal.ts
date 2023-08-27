@@ -41,8 +41,10 @@ export default {
         `${getMember(target, interaction)} has no money`
       );
     }
-    console.log(target, user_target);
-    console.log(user_target.money);
+    if (user_target.money <= 0)
+      return interaction.createMessage(
+        `You can't steal from ${getMember(user_target, interaction)}`
+      );
     const low = 1;
     const max = user_target.money;
 
