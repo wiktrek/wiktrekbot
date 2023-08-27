@@ -34,6 +34,11 @@ export default {
     const money: number = Number(
       (args[1] as InteractionDataOptionsString).value
     );
+
+    if (money <= 0)
+      return interaction.createMessage(
+        "You can't give negative amount of money"
+      );
     let user = await MoneyModel.findOne({
       guildId: interaction.member?.guild.id,
       userId: interaction.member?.id,
@@ -48,6 +53,15 @@ export default {
       },
       {
         $inc: { money: money },
+      }
+    ).exec();
+    await MoneyModel.findOneAndUpdate(
+      {
+        guildId: interaction.member?.guild.id,
+        userId: interaction.member?.id,
+      },
+      {
+        $inc: { money: money * -1 },
       }
     ).exec();
     if (!user_target) {
