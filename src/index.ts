@@ -4,7 +4,8 @@ import { commandHandler } from './handlers/commandHandler';
 import { Client } from './Client';
 import 'dotenv/config';
 const mongoose = require('mongoose');
-export const client = new Client(process.env.TOKEN as string, {
+// console.log(process.env.DB)
+export const client = new Client(process.env.TOKEN!, {
   intents: ['all'],
 });
 commandHandler(client);
