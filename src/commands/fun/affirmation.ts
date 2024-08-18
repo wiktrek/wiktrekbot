@@ -2,33 +2,26 @@ import {
   CommandInteraction,
   EmbedOptions,
   InteractionDataOptionsString,
-} from 'eris';
-import axios, { type AxiosResponse } from 'axios';
+} from "eris";
+import ky from "ky";
 interface Affirmation {
   affirmation: string;
 }
 export default {
-  name: 'affirmation',
-  description: 'replies with an affirmation',
+  name: "affirmation",
+  description: "replies with an affirmation",
   options: [],
   run: async (
     interaction: CommandInteraction,
     args: InteractionDataOptionsString[]
   ) => {
-    const a: AxiosResponse<Affirmation> = await axios({
-      url: 'https://www.affirmations.dev/',
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
-    });
-
+    const a = await ky.get("https://www.affirmations.dev/").json<Affirmation>();
     const embed: EmbedOptions = {
-      title: 'Affirmation',
+      title: "Affirmation",
       color: 0x0e5bd0,
-      description: a.data.affirmation,
+      description: a.affirmation,
       footer: {
-        text: 'affirmations.dev',
+        text: "affirmations.dev",
       },
     };
     interaction.createMessage({ embeds: [embed] });
