@@ -1,7 +1,7 @@
-import { Client } from '../Client';
-import Eris, { Constants } from 'eris';
-const { glob } = require('glob');
-import Table from 'text-table';
+import { glob } from "glob";
+import Table from "text-table";
+import { Client, CommandData } from "../Client";
+import { Collection, Events, GatewayIntentBits } from "discord.js";
 interface Command {
   default: {
     name: string;
@@ -12,14 +12,14 @@ interface Command {
   };
 }
 export async function commandHandler(client: Client) {
-  const commandFiles = await glob('./src/commands/**/*.ts');
+  const commandFiles = await glob("./src/commands/**/*.ts");
   // const commandFiles = readdirSync('./src/commands/').filter((f) =>
   //   f.endsWith('.ts')
   // );
   // console.log(commandFiles);
   for (const file of commandFiles) {
     const command: Command = await import(
-      `${file.replaceAll('\\', '/').replace('src', '..')}`
+      `${file.replace("\\", "/").replace("src", "..")}`
     );
     // If the command does not have a name and description provided it throws an error.
     if (!command.default.name) {
@@ -29,23 +29,30 @@ export async function commandHandler(client: Client) {
       throw new Error(`${file} needs to have a command.description!`);
     }
     const category = file
-      .replaceAll('\\', '/')
-      .replace('src/commands/', '')
-      .replace(`/${command.default.name}.ts`, '');
-    client.commands.set(command.default.name, {
+      .replace("\\", "/")
+      .replace("src/commands/", "")
+      .replace(`/${command.default.name}.ts`, "");
+    const ccommand: CommandData = {
+      category: category,
       description: command.default.description,
       options: command.default.options,
-      category: category,
-      cooldown: command.default.cooldown || 0,
       run: command.default.run,
-    });
+    };
+    client.commands.set(command.default.name, ccommand);
+    // client.commands.set(command.default.name, {
+    //   description: command.default.description,
+    //   options: command.default.options,
+    //   category: category,
+    //   cooldown: command.default.cooldown || 0,
+    //   run: command.default.run,
+    // });
   }
   const commands: string[][] = [];
   client.commands.forEach((e, name) => {
-    if (name === 'undefined') return;
+    if (name === "undefined") return;
     commands.push([name, `✅`]);
   });
-  console.log('Commands:');
+  console.log("Commands:");
   const t = Table(commands);
   console.log(t);
 }
