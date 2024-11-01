@@ -1,10 +1,9 @@
-import { SlashCommandBuilder, CommandInteraction } from "discord.js";
+import { Command } from "../../structures/Command";
 
-export default {
-  data: new SlashCommandBuilder()
-    .setName("ping")
-    .setDescription("Replies with Pong!"),
-  async execute(interaction: CommandInteraction) {
-    await interaction.reply("Pong!");
+export default new Command({
+  name: "ping",
+  description: "replies with pong",
+  run: async ({ interaction }) => {
+    interaction.followUp("Pong3");
   },
-};
+});
