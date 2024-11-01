@@ -1,10 +1,10 @@
 async function loadEvents(client) {
-  const { loadFiles } = require('../functions/fileLoader');
-  const ascii = require('ascii-table');
-  const table = new ascii().setHeading('Events', 'Status');
+  const { loadFiles } = require("../functions/fileLoader");
+  const ascii = require("ascii-table");
+  const table = new ascii().setHeading("Events", "Status");
 
   await client.events.clear();
-  const Files = await loadFiles('events');
+  const Files = await loadFiles("events");
   Files.forEach((file) => {
     const event = require(file);
     const execute = (...args) => event.execute(...args, client);
@@ -18,9 +18,9 @@ async function loadEvents(client) {
       else client.on(event.name, execute);
     }
 
-    table.addRow(event.name, '✅');
+    table.addRow(event.name, "✅");
   });
 
-  return console.log(table.toString(), '\nLoadedEvents');
+  return console.log(table.toString(), "\nLoadedEvents");
 }
 module.exports = { loadEvents };
