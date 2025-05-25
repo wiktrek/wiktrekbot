@@ -12,6 +12,7 @@
     "nodemon": "^3.1.10"
   },
   "scripts": {
-    "start": "nodemon src/index.js"
+    "dev": "nodemon src/index.js dev",
+    "start": "nodemon src/index.js prod"
   }
 }
