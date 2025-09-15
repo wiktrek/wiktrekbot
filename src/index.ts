@@ -5,7 +5,7 @@ import { loadEvents } from "./handlers/eventHandler";
 
 dotenv.config();
 
-const token = process.env.DISCORD_TOKEN;
+const token = process.env.TOKEN;
 if (!token) throw new Error("DISCORD_TOKEN is not set in .env");
 
 const client = new BotClient(token, { intents: [] });
