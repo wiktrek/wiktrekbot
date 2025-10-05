@@ -1,8 +1,8 @@
-import Eris from "eris";
+import { Client } from "eris";
 import { Command } from "./Command";
 import { Event } from "./Event";
 
-export class BotClient extends Eris.Client {
+export class BotClient extends Client {
     commands: Map<string, Command> = new Map();
     events: Map<string, Event> = new Map();
 }
