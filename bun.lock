@@ -4,12 +4,15 @@
     "": {
       "dependencies": {
         "@types/node": "^24.4.0",
+        "dotenv": "^17.2.3",
         "eris": "^0.18.0",
       },
     },
   },
   "packages": {
     "@types/node": ["@types/node@24.4.0", "", { "dependencies": { "undici-types": "~7.11.0" } }, "sha512-gUuVEAK4/u6F9wRLznPUU4WGUacSEBDPoC2TrBkw3GAnOLHBL45QdfHOXp1kJ4ypBGLxTOB+t7NJLpKoC3gznQ=="],
+
+    "dotenv": ["dotenv@17.2.3", "", {}, "sha512-JVUnt+DUIzu87TABbhPmNfVdBDt18BLOWjMUFJMSi/Qqg7NTYtabbvSNJGOJ7afbRuv9D/lngizHtP7QyLQ+9w=="],
 
     "eris": ["eris@0.18.0", "", { "dependencies": { "ws": "^8.2.3" }, "optionalDependencies": { "opusscript": "^0.0.8", "tweetnacl": "^1.0.3" } }, "sha512-zv2hjAfs4SYjR/EHUwBGNoKClctbqki1jPMed4SiQ4KKfafV1MIBLqKodQSGDgT9qkSUI5+MQ4EQW/8MkbAPkg=="],
 
