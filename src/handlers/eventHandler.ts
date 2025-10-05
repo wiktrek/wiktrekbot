@@ -8,7 +8,8 @@ export async function loadEvents(client: BotClient) {
     const eventFiles = fs.readdirSync(eventsPath).filter(f => f.endsWith(".ts") || f.endsWith(".js"));
 
     for (const file of eventFiles) {
-        const event: Event = await import(path.join(eventsPath, file));
+        const eventModule = await import(path.join(eventsPath, file));
+        const event: Event = eventModule.default || eventModule;
         if (event.once) {
             client.once(event.name, (...args) => event.execute(client, ...args));
         } else {
