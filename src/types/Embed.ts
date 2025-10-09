@@ -27,5 +27,10 @@ class Embed {
     addField(field: Field) {
         this.fields.push(field)
     }
+    addFields(fields: Field[]) {
+        fields.map(f => {
+            this.fields.push(f)
+        })
+    }
 }
 export default Embed;

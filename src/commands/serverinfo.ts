@@ -1,6 +1,7 @@
 import { CommandInteraction } from "eris";
 import { Command } from "../types/Command";
 import { BotClient } from "../types/Client";
+import Embed from "../types/Embed";
 
 const serverInfo: Command = {
   name: "serverinfo",
@@ -11,8 +12,29 @@ const serverInfo: Command = {
     if (!guild) {
         interaction.createFollowup("Error no guild")
     } else {
-        const message = `members: ${guild?.memberCount}\nowner: ${guild?.members.get(guild.ownerID)?.username}\nchannels: ${guild.channels.size}`
-        interaction.createFollowup(message)
+      const embed = new Embed()
+      embed.setTitle(guild.name);
+      embed.setDescription("")
+      embed.setColor(0x05DD13)
+      embed.addFields([
+      {
+        name: "owner",
+        value: guild.members.get(guild.ownerID)?.username!,
+      }, 
+      {
+        name: "members",
+        value: `${guild.memberCount}`,
+      },
+      {
+        name: "online",
+        value: `${guild.members.filter(m => m.status == "online").length}`,
+      },
+      {
+        name: "channels",
+        value: `${guild.channels.size}`,
+      }
+    ])
+      interaction.createFollowup({ embeds: [embed]})
     }
   },
 };
