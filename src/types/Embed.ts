@@ -1,13 +1,15 @@
 import { EmbedAuthorOptions } from "eris"
 interface Field {
-
+    name: string
+    value: string
+    inline?: boolean
 }
 class Embed {
     author = {} as EmbedAuthorOptions
     title = "You forgot to set the title"
     description = "You forgot to set the description"
     color = 0x000000
-    fields = []
+    fields: Field[] = []
     setTitle(title: string) {
         this.title = title
     }
@@ -21,6 +23,9 @@ class Embed {
         this.author = {
             name, icon_url, url
         }
+    }
+    addField(field: Field) {
+        this.fields.push(field)
     }
 }
 export default Embed;

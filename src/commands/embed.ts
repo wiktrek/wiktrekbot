@@ -2,7 +2,11 @@ import { CommandInteraction, EmbedOptions, InteractionDataOptions } from "eris";
 import { Command } from "../types/Command";
 import { BotClient } from "../types/Client";
 import Embed from "../types/Embed";
-
+interface EmbedOption {
+  name: string
+  type: number
+  value?: string | number | undefined
+}
 const embed: Command = {
   name: "embed",
   description: "sends embed",
@@ -31,14 +35,15 @@ const embed: Command = {
   execute: async (client: BotClient, interaction: CommandInteraction) => {
     await interaction.defer();
     const embed = new Embed();
-    const author = interaction.data?.options?.[0]?.value;
-    const title = interaction.data?.options?.[1]?.value;
-    const description = interaction.data?.options?.[2]?.value;
-    const color = interaction.data?.options?.[3]?.value;
-    embed.setAuthor(author)
-    embed.setTitle(title)
-    embed.setDescription(description)
-    embed.setColor(color)
+    const options = interaction.data?.options as EmbedOption[] ?? [];
+    const author = (options[0]?.value) || "";
+    const title = (options[1]?.value) || "";
+    const description = (options[2]?.value) || "";
+    const color = (options[3]?.value)|| 0xff00ff;
+    embed.setAuthor(author as string)
+    embed.setTitle(title as string)
+    embed.setDescription(description as string)
+    embed.setColor(color as number)
     interaction.createFollowup({
         embeds: [embed]
     })
