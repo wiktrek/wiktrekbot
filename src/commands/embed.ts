@@ -1,4 +1,4 @@
-import { CommandInteraction, EmbedOptions, InteractionDataOptions } from "eris";
+import { CommandInteraction } from "eris";
 import { Command } from "../types/Command";
 import { BotClient } from "../types/Client";
 import Embed from "../types/Embed";

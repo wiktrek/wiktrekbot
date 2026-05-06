@@ -19,7 +19,7 @@ const serverInfo: Command = {
       embed.addFields([
       {
         name: "owner",
-        value: guild.members.get(guild.ownerID)?.username!,
+        value: guild.members.get(guild.ownerID)!.username!,
       }, 
       {
         name: "members",

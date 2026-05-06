@@ -4,10 +4,10 @@ import { Interaction, CommandInteraction } from "eris";
 
 const interactionCreate: Event = {
     name: "interactionCreate",
-    once: true,
+    once: false,
     async execute(client: BotClient, interaction: Interaction) {
         if(interaction instanceof CommandInteraction) {
-            for(let slashCommand of client.commands.values()) {
+            for(const slashCommand of client.commands.values()) {
                 if (slashCommand.name === interaction.data.name) {
                     await slashCommand.execute(client, interaction)
                     break
