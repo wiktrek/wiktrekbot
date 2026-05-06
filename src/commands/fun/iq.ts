@@ -1,6 +1,6 @@
 import { CommandInteraction } from "eris";
-import { Command } from "../types/Command";
-import { BotClient } from "../types/Client";
+import { Command } from "../../types/Command";
+import { BotClient } from "../../types/Client";
 
 const min = 0;
 const max = 200;

@@ -20,10 +20,10 @@ const ready: Event = {
         }
 
         const commandsTable = new AsciiTable3("Commands");
-        commandsTable.setHeading("Command", "Status");
-        for (const [name] of client.commands) {
+        commandsTable.setHeading("Command", "Category", "Status");
+        for (const [name, command] of client.commands) {
             const ok = registeredNames.has(name);
-            commandsTable.addRow(name, ok ? "☑" : "X");
+            commandsTable.addRow(name, command.category ?? "uncategorized", ok ? "☑" : "X");
         }
         console.log(commandsTable.toString());
 

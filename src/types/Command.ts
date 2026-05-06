@@ -7,6 +7,7 @@ import { BotClient } from "./Client";
 export interface Command {
     name: string;
     description: string;
+    category?: string;
     options?: ApplicationCommandOptions[];
     execute: (client: BotClient, interaction: CommandInteraction) => Promise<void>;
 }

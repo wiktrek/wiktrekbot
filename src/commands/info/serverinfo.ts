@@ -1,7 +1,7 @@
 import { CommandInteraction } from "eris";
-import { Command } from "../types/Command";
-import { BotClient } from "../types/Client";
-import Embed from "../types/Embed";
+import { Command } from "../../types/Command";
+import { BotClient } from "../../types/Client";
+import Embed from "../../types/Embed";
 
 const serverInfo: Command = {
   name: "serverinfo",
